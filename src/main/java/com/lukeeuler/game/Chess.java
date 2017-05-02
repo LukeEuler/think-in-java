@@ -14,10 +14,5 @@ public class Chess implements Game {
         return ++moves < MOVES;
     }
 
-    static GameFactory factory = new GameFactory() {
-        @Override
-        public Game getGame() {
-            return new Chess();
-        }
-    };
+    static GameFactory factory = Chess::new;
 }

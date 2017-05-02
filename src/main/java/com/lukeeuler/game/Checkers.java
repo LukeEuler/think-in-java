@@ -14,10 +14,5 @@ public class Checkers implements Game {
         return ++moves < MOVES;
     }
 
-    static GameFactory factory = new GameFactory() {
-        @Override
-        public Game getGame() {
-            return new Checkers();
-        }
-    };
+    static GameFactory factory = Checkers::new;
 }
