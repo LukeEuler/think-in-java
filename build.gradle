@@ -16,6 +16,11 @@ group 'com.lukeeuler'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.lukeeuler.Think'
+    }
+}
 
 sourceCompatibility = 1.8
 
