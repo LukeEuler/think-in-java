@@ -2,6 +2,10 @@ package com.lukeeuler;
 
 import com.lukeeuler.game.Games;
 import com.lukeeuler.generics.LinkedStack;
+import com.lukeeuler.io.DirList;
+
+import java.io.File;
+import java.util.Arrays;
 
 public class Think {
     public static void main(String[] args) {
@@ -16,6 +20,19 @@ public class Think {
         String s;
         while ((s = lss.pop()) != null) {
             System.out.println(s);
+        }
+        System.out.println();
+
+        File path = new File(".");
+        String[] list;
+        if (args.length == 0) {
+            list = path.list();
+        } else {
+            list = path.list(DirList.filter(args[0]));
+        }
+        Arrays.sort(list, String.CASE_INSENSITIVE_ORDER);
+        for (String dirItem : list) {
+            System.out.println(dirItem);
         }
     }
 }
