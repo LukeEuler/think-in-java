@@ -4,15 +4,24 @@ import com.lukeeuler.game.Games;
 import com.lukeeuler.generics.LinkedStack;
 import com.lukeeuler.io.DirList;
 
-import java.io.File;
+import java.io.*;
 import java.util.Arrays;
 
 public class Think {
     public static void main(String[] args) {
+        playGame();
+        stack();
+        exploreIO(args);
+        readFile();
+    }
+
+    private static void playGame() {
         Games games = new Games();
         games.start();
         System.out.println();
+    }
 
+    private static void stack() {
         LinkedStack<String> lss = new LinkedStack<>();
         for (String s : "Phasers on stun!".split(" ")) {
             lss.push(s);
@@ -22,7 +31,9 @@ public class Think {
             System.out.println(s);
         }
         System.out.println();
+    }
 
+    private static void exploreIO(String[] args) {
         File path = new File(".");
         String[] list;
         if (args.length == 0) {
@@ -33,6 +44,21 @@ public class Think {
         Arrays.sort(list, String.CASE_INSENSITIVE_ORDER);
         for (String dirItem : list) {
             System.out.println(dirItem);
+        }
+    }
+
+    private static void readFile(){
+        System.out.println();
+        try (FileReader fileReader = new FileReader("/home/luke/boron.toml")) {
+            BufferedReader in = new BufferedReader(fileReader);
+            String s;
+            StringBuilder sb = new StringBuilder();
+            while ((s = in.readLine()) != null) {
+                sb.append(s).append("\n");
+            }
+            System.out.println(sb.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
