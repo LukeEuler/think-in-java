@@ -3,9 +3,13 @@ package com.lukeeuler;
 import com.lukeeuler.game.Games;
 import com.lukeeuler.generics.LinkedStack;
 import com.lukeeuler.io.DirList;
+import com.lukeeuler.thread.ETCaught;
+import com.lukeeuler.thread.EThread;
 
 import java.io.*;
 import java.util.Arrays;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Think {
     public static void main(String[] args) {
@@ -14,6 +18,7 @@ public class Think {
         exploreIO(args);
         readFile();
         showEnum();
+        thread();
     }
 
     private static void playGame() {
@@ -80,5 +85,12 @@ public class Think {
         for (Pool item : Pool.values()) {
             System.out.printf("%s : %s\n", item, item.getDescription());
         }
+    }
+
+    private static void thread() {
+        Thread.setDefaultUncaughtExceptionHandler(new ETCaught());
+        ExecutorService exec = Executors.newCachedThreadPool();
+        exec.execute(new EThread());
+        exec.shutdownNow();
     }
 }
