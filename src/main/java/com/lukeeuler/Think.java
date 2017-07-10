@@ -13,6 +13,7 @@ public class Think {
         stack();
         exploreIO(args);
         readFile();
+        showEnum();
     }
 
     private static void playGame() {
@@ -47,7 +48,7 @@ public class Think {
         }
     }
 
-    private static void readFile(){
+    private static void readFile() {
         System.out.println();
         try (FileReader fileReader = new FileReader("/home/luke/boron.toml")) {
             BufferedReader in = new BufferedReader(fileReader);
@@ -59,6 +60,25 @@ public class Think {
             System.out.println(sb.toString());
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    enum Pool {
+        VALUE("point"), VECTOR("line"), MATRIX("matrix");
+        private String description;
+
+        Pool(String p) {
+            this.description = p;
+        }
+
+        public String getDescription() {
+            return this.description;
+        }
+    }
+
+    private static void showEnum() {
+        for (Pool item : Pool.values()) {
+            System.out.printf("%s : %s\n", item, item.getDescription());
         }
     }
 }
