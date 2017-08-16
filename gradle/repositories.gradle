@@ -1,0 +1,7 @@
+repositories {
+    mavenLocal()
+
+    maven { url("http://maven.aliyun.com/nexus/content/groups/public/") }
+    maven { url 'http://nexus.oneapm.me:8081/nexus/content/groups/public/' }
+    maven { url 'http://clojars.org/repo' }
+}
